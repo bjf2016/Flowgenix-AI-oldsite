@@ -57,7 +57,7 @@ function initSmoothScrolling() {
                 
                 if (targetElement) {
                     const headerHeight = document.querySelector('.header').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                    const targetPosition = targetElement.offsetTop - headerHeight - 40;
                     
                     window.scrollTo({
                         top: targetPosition,
