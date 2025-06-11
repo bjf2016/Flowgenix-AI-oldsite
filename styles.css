@@ -176,7 +176,7 @@ section {
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
-    padding-top: 12rem;
+    padding-top: 16rem;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -666,7 +666,7 @@ section {
     }
 
     .hero {
-        padding-top: 10rem;
+        padding-top: 12rem;
     }
 
     h1 {

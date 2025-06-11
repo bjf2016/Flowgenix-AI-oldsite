@@ -75,7 +75,7 @@ function initActiveNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     
     function updateActiveNavigation() {
-        const scrollPosition = window.scrollY + 100;
+        const scrollPosition = window.scrollY + 200;
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
