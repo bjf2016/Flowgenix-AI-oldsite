@@ -219,8 +219,10 @@ section {
 }
 
 .about-content {
-    max-width: 800px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
 
 .about-text h3 {
@@ -231,6 +233,13 @@ section {
 
 .about-text h3:first-child {
     margin-top: 0;
+}
+
+.about-img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }
 
 /* Services Section */
@@ -635,6 +644,7 @@ section {
         text-align: center;
     }
 
+    .about-content,
     .contact-content {
         grid-template-columns: 1fr;
         gap: 3rem;
