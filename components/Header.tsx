@@ -45,18 +45,19 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/98 backdrop-blur-md shadow-lg' : 'bg-white/95 backdrop-blur-md'
-    } border-b border-gray-200`}>
+      isScrolled ? 'bg-charcoal-900/98 backdrop-blur-md shadow-lg' : 'bg-charcoal-900/95 backdrop-blur-md'
+    } border-b border-charcoal-700`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           <div className="logo">
             <Link href="/">
               <Image
-                src="/flowgenix-ai-logo.png"
+                src="/flowgenix-ai-logo-sm.png"
                 alt="Flowgenix AI"
                 width={300}
                 height={120}
-                className="h-20 w-auto max-w-[300px] lg:h-24"
+                className="w-[300px] h-auto"
+                style={{ width: '300px', height: 'auto' }}
                 priority
               />
             </Link>
@@ -69,14 +70,14 @@ const Header = () => {
                   {link.href.startsWith('/#') ? (
                     <button
                       onClick={() => handleNavClick(link.href)}
-                      className="text-gray-700 hover:text-primary-600 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-50"
+                      className="text-gray-300 hover:text-primary-400 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-900/20"
                     >
                       {link.label}
                     </button>
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-gray-700 hover:text-primary-600 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-50"
+                      className="text-gray-300 hover:text-primary-400 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-900/20"
                     >
                       {link.label}
                     </Link>
@@ -91,13 +92,13 @@ const Header = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle mobile menu"
           >
-            <span className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 ${
+            <span className={`w-6 h-0.5 bg-gray-300 transition-all duration-300 ${
               isMenuOpen ? 'rotate-45 translate-y-0.5' : ''
             }`}></span>
-            <span className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 my-1 ${
+            <span className={`w-6 h-0.5 bg-gray-300 transition-all duration-300 my-1 ${
               isMenuOpen ? 'opacity-0' : ''
             }`}></span>
-            <span className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 ${
+            <span className={`w-6 h-0.5 bg-gray-300 transition-all duration-300 ${
               isMenuOpen ? '-rotate-45 -translate-y-0.5' : ''
             }`}></span>
           </button>
@@ -107,14 +108,14 @@ const Header = () => {
         <div className={`lg:hidden transition-all duration-300 overflow-hidden ${
           isMenuOpen ? 'max-h-96 pb-4' : 'max-h-0'
         }`}>
-          <nav className="bg-white rounded-lg shadow-lg border border-gray-200 p-4">
+          <nav className="bg-charcoal-800 rounded-lg shadow-lg border border-charcoal-600 p-4">
             <ul className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   {link.href.startsWith('/#') ? (
                     <button
                       onClick={() => handleNavClick(link.href)}
-                      className="w-full text-left text-gray-700 hover:text-navy-700 font-medium px-4 py-3 rounded-lg transition-colors duration-300 hover:bg-primary-50"
+                      className="w-full text-left text-gray-300 hover:text-primary-400 font-medium px-4 py-3 rounded-lg transition-colors duration-300 hover:bg-primary-900/20"
                     >
                       {link.label}
                     </button>
@@ -122,7 +123,7 @@ const Header = () => {
                     <Link
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-gray-700 hover:text-navy-700 font-medium px-4 py-3 rounded-lg transition-colors duration-300 hover:bg-primary-50"
+                      className="block text-gray-300 hover:text-primary-400 font-medium px-4 py-3 rounded-lg transition-colors duration-300 hover:bg-primary-900/20"
                     >
                       {link.label}
                     </Link>
