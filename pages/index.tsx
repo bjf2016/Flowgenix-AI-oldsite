@@ -14,12 +14,12 @@ const HomePage = () => {
       </Head>
 
       {/* Hero Section */}
-      <section id="home" className="gradient-bg pt-40 lg:pt-48 pb-16 min-h-screen flex items-center relative overflow-hidden">
+      <section id="home" className="gradient-bg pt-48 lg:pt-56 pb-16 min-h-screen flex items-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-secondary-600/10"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="text-center lg:text-left animate-in">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-charcoal-900 mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-charcoal-900 mb-8 leading-tight">
                 <span className="text-gradient">Transform</span> Your Business with AI
               </h1>
               <p className="text-xl lg:text-2xl text-charcoal-700 font-medium mb-8">
