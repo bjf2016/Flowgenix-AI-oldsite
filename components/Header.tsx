@@ -26,15 +26,15 @@ const Header = () => {
 
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false)
-    
+
     if (href.startsWith('/#')) {
       const targetId = href.substring(2)
       const targetElement = document.getElementById(targetId)
-      
+
       if (targetElement) {
         const headerHeight = 140
         const targetPosition = targetElement.offsetTop - headerHeight
-        
+
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
@@ -70,14 +70,14 @@ const Header = () => {
                   {link.href.startsWith('/#') ? (
                     <button
                       onClick={() => handleNavClick(link.href)}
-                      className="text-gray-300 hover:text-primary-400 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-900/20"
+                      className="text-gray-700 hover:text-primary-600 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-100/50"
                     >
                       {link.label}
                     </button>
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-gray-300 hover:text-primary-400 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-900/20"
+                      className="text-gray-700 hover:text-primary-600 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-100/50"
                     >
                       {link.label}
                     </Link>
@@ -115,7 +115,7 @@ const Header = () => {
                   {link.href.startsWith('/#') ? (
                     <button
                       onClick={() => handleNavClick(link.href)}
-                      className="w-full text-left text-gray-300 hover:text-primary-400 font-medium px-4 py-3 rounded-lg transition-colors duration-300 hover:bg-primary-900/20"
+                      className="w-full text-left text-gray-700 hover:text-primary-600 font-medium px-4 py-3 rounded-lg transition-colors duration-300 hover:bg-primary-100/50"
                     >
                       {link.label}
                     </button>
@@ -123,7 +123,7 @@ const Header = () => {
                     <Link
                       href={link.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-gray-300 hover:text-primary-400 font-medium px-4 py-3 rounded-lg transition-colors duration-300 hover:bg-primary-900/20"
+                      className="block text-gray-700 hover:text-primary-600 font-medium px-4 py-3 rounded-lg transition-colors duration-300 hover:bg-primary-100/50"
                     >
                       {link.label}
                     </Link>
