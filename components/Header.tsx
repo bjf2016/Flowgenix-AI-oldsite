@@ -52,8 +52,8 @@ const Header = () => {
           <div className="logo">
             <Link href="/">
               <Image
-                src="/attached_assets/KingKConsulting-logo-old_1749670686873.png"
-                alt="King K Consulting"
+                src="/attached_assets/flowgenix-ai-logo.png"
+                alt="Flowgenix AI"
                 width={300}
                 height={120}
                 className="h-20 w-auto max-w-[300px] lg:h-24"
@@ -69,7 +69,7 @@ const Header = () => {
                   {link.href.startsWith('/#') ? (
                     <button
                       onClick={() => handleNavClick(link.href)}
-                      className="text-gray-700 hover:text-navy-700 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-50"
+                      className="text-gray-700 hover:text-primary-600 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-50"
                     >
                       {link.label}
                     </button>
