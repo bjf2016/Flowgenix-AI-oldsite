@@ -1,0 +1,43 @@
+<svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Crown -->
+  <g transform="translate(150, 20)">
+    <path d="M-40 0 L-20 -15 L0 -20 L20 -15 L40 0 L30 15 L-30 15 Z" 
+          fill="#C4A047" 
+          stroke="#B8941A" 
+          stroke-width="1"/>
+    <!-- Crown jewels -->
+    <circle cx="-15" cy="-5" r="2" fill="#1E40AF"/>
+    <circle cx="15" cy="-5" r="2" fill="#1E40AF"/>
+    <circle cx="0" cy="-10" r="2.5" fill="#1E40AF"/>
+  </g>
+  
+  <!-- Letter K -->
+  <g transform="translate(120, 45)">
+    <rect x="0" y="0" width="8" height="35" fill="#1F2937"/>
+    <path d="M8 0 L25 17.5 L8 17.5 Z" fill="#1F2937"/>
+    <path d="M8 17.5 L25 35 L8 35 Z" fill="#1F2937"/>
+  </g>
+  
+  <!-- Letter K (right side) -->
+  <g transform="translate(172, 45)">
+    <rect x="0" y="0" width="8" height="35" fill="#1F2937"/>
+    <path d="M8 0 L25 17.5 L8 17.5 Z" fill="#1F2937"/>
+    <path d="M8 17.5 L25 35 L8 35 Z" fill="#1F2937"/>
+  </g>
+  
+  <!-- Company Name -->
+  <text x="150" y="100" 
+        font-family="Inter, sans-serif" 
+        font-size="16" 
+        font-weight="600" 
+        fill="#1F2937" 
+        text-anchor="middle">KING K CONSULTING</text>
+  
+  <!-- Tagline -->
+  <text x="150" y="115" 
+        font-family="Inter, sans-serif" 
+        font-size="10" 
+        font-weight="400" 
+        fill="#6B7280" 
+        text-anchor="middle">AI CONSULTING AND WORKFLOW THAT WORKS</text>
+</svg>
