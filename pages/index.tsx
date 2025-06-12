@@ -8,38 +8,47 @@ const HomePage = () => {
   return (
     <Layout>
       <Head>
-        <title>King K Consulting - AI Consulting for Business Growth</title>
+        <title>Flowgenix AI - AI Consulting for Business Growth</title>
         <meta name="description" content="Unlock AI-powered growth for your business with practical, hands-on AI consulting and automation tailored for small and midsize businesses." />
         <meta name="keywords" content="AI consulting, business automation, workflow optimization, AI strategy, small business AI" />
       </Head>
 
       {/* Hero Section */}
-      <section id="home" className="bg-gradient-to-br from-gray-50 to-primary-50 pt-32 lg:pt-40 pb-16 min-h-screen flex items-center">
-        <div className="container mx-auto px-4">
+      <section id="home" className="gradient-bg pt-32 lg:pt-40 pb-16 min-h-screen flex items-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-secondary-600/10"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div className="text-center lg:text-left">
-              <h1 className="text-4xl lg:text-6xl font-bold text-navy-900 mb-6">
-                Unlock AI-Powered Growth for Your Business
+            <div className="text-center lg:text-left animate-in">
+              <h1 className="text-5xl lg:text-7xl font-bold text-charcoal-900 mb-6 leading-tight">
+                <span className="text-gradient">Transform</span> Your Business with AI
               </h1>
-              <p className="text-xl lg:text-2xl text-primary-600 font-medium mb-8">
-                Practical, hands-on AI consulting and automation for small and midsize businesses—simple, actionable, and tailored for you.
+              <p className="text-xl lg:text-2xl text-charcoal-700 font-medium mb-8">
+                Unlock intelligent workflows and automation that drive real growth for modern businesses.
               </p>
               <p className="text-gray-600 mb-10 text-lg leading-relaxed">
-                Our expertise lies in making advanced AI accessible and effective for all business types. Whether you're a digital startup or a traditional brick-and-mortar business, we provide the guidance and tools you need to harness the power of AI for growth, efficiency, and competitive advantage.
+                At Flowgenix AI, we specialize in creating seamless AI solutions that integrate naturally into your operations, boosting efficiency and unlocking new opportunities for sustainable growth.
               </p>
-              <a href="#contact" className="cta-button">
-                Book Your Free Strategy Session
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="#contact" className="cta-button">
+                  Start Your AI Journey
+                </a>
+                <a href="#services" className="cta-button secondary">
+                  Explore Solutions
+                </a>
+              </div>
             </div>
-            <div className="flex justify-center">
-              <Image
-                src="/attached_assets/Unlock AI-power_1749671416488.png"
-                alt="AI Business Growth Illustration"
-                width={500}
-                height={400}
-                className="w-full max-w-lg h-auto rounded-lg shadow-lg"
-                priority
-              />
+            <div className="flex justify-center animate-in">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-2xl blur-3xl opacity-20 scale-110"></div>
+                <Image
+                  src="/attached_assets/Unlock AI-power_1749671416488.png"
+                  alt="AI Business Growth Illustration"
+                  width={500}
+                  height={400}
+                  className="w-full max-w-lg h-auto rounded-2xl shadow-2xl relative z-10 border border-primary-200/50"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -49,37 +58,40 @@ const HomePage = () => {
       <section id="about" className="bg-white py-20">
         <div className="container mx-auto px-4">
           <div className="section-header">
-            <h2 className="section-title">About King K Consulting</h2>
-            <p className="section-subtitle">Your trusted partner in AI transformation</p>
+            <h2 className="section-title">About Flowgenix AI</h2>
+            <p className="section-subtitle">Your trusted partner in intelligent automation</p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <h3 className="text-2xl font-semibold text-navy-700 mb-6">Real-World Experience, Practical Solutions</h3>
+            <div className="animate-in">
+              <h3 className="text-2xl font-semibold text-primary-700 mb-6">Intelligent Workflows for Modern Business</h3>
               <p className="mb-6">
-                King K Consulting was founded on the belief that every business, regardless of size or industry, deserves access to the transformative power of AI. With extensive real-world executive experience working with businesses of all sizes, we understand the unique challenges that small and midsize business owners face.
+                Flowgenix AI was founded on the principle that intelligent automation should enhance human potential, not replace it. We specialize in creating AI-powered workflows that seamlessly integrate with your existing operations, amplifying your team's capabilities and driving sustainable growth.
               </p>
               
               <p className="mb-8">
-                Our approach is rooted in deep empathy for entrepreneurs and business leaders who want to grow but may not have technical backgrounds or in-house expertise. We bridge that gap with hands-on guidance that makes AI and automation simple, actionable, and immediately effective.
+                Our approach combines cutting-edge AI technology with deep business understanding, ensuring that every solution we implement delivers measurable value. We work closely with forward-thinking businesses to identify optimization opportunities and deploy intelligent systems that evolve with your needs.
               </p>
               
-              <h3 className="text-2xl font-semibold text-navy-700 mb-6">Our Mission</h3>
+              <h3 className="text-2xl font-semibold text-primary-700 mb-6">Our Vision</h3>
               <p className="mb-8">
-                We're passionate about democratizing AI technology, making it accessible and practical for any business—whether you're running a digital marketing agency or a family-owned restaurant. Our goal is to help you implement AI solutions that deliver real results, not just impressive technology.
+                We envision a future where every business, regardless of size, has access to enterprise-grade AI capabilities. Through our innovative flow-based approach, we make advanced automation accessible, practical, and immediately impactful for organizations ready to embrace the next generation of business intelligence.
               </p>
               
               <a href="#contact" className="cta-button secondary">
-                Learn More About Our Approach
+                Discover Our Methodology
               </a>
             </div>
-            <div>
-              <Image
-                src="/attached_assets/AI-Workflow-bkground_1749671840367.jpg"
-                alt="AI Workflow Network"
-                width={600}
-                height={400}
-                className="w-full h-auto rounded-xl shadow-lg"
-              />
+            <div className="animate-in">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-secondary-400/20 rounded-2xl blur-2xl"></div>
+                <Image
+                  src="/attached_assets/AI-Workflow-bkground_1749671840367.jpg"
+                  alt="AI Workflow Network"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto rounded-2xl shadow-xl relative z-10 border border-primary-100"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -89,75 +101,80 @@ const HomePage = () => {
       <section id="services" className="bg-gray-50 py-20">
         <div className="container mx-auto px-4">
           <div className="section-header">
-            <h2 className="section-title">Our Services</h2>
-            <p className="section-subtitle">Comprehensive AI solutions tailored to your business needs</p>
+            <h2 className="section-title">Our Solutions</h2>
+            <p className="section-subtitle">Intelligent automation that transforms how you work</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {/* Service 1 */}
-            <div className="service-card">
-              <div className="w-20 h-20 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <Image src="/assets/services-icon-1.svg" alt="Strategy Icon" width={50} height={50} />
+            <div className="service-card group">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
-              <h3 className="text-xl font-semibold text-navy-900 mb-4">AI Strategy & Roadmapping</h3>
+              <h3 className="text-xl font-semibold text-charcoal-900 mb-4">Intelligent Workflow Design</h3>
               <p className="text-gray-600 mb-6">
-                We assess your business needs, identify automation opportunities, and build a clear step-by-step AI adoption plan tailored specifically to your goals. Get a strategic foundation that guides your AI journey from day one.
+                We analyze your business processes and design AI-powered workflows that eliminate bottlenecks, reduce manual tasks, and create seamless operations that scale with your growth.
               </p>
               <ul className="space-y-2 mb-6">
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Comprehensive business assessment
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Process mapping and optimization
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Custom AI implementation roadmap
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Custom automation implementation
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> ROI projections and timeline planning
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Performance monitoring and scaling
                 </li>
               </ul>
             </div>
 
             {/* Service 2 */}
-            <div className="service-card">
-              <div className="w-20 h-20 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <Image src="/assets/services-icon-2.svg" alt="Automation Icon" width={50} height={50} />
+            <div className="service-card group">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
               </div>
-              <h3 className="text-xl font-semibold text-navy-900 mb-4">AI Automation & Workflow Optimization</h3>
+              <h3 className="text-xl font-semibold text-charcoal-900 mb-4">Smart Integration & Automation</h3>
               <p className="text-gray-600 mb-6">
-                Transform your operations with time-saving automations and AI tool integrations that streamline business processes. Boost efficiency and productivity without requiring any technical background from your team.
+                Connect your existing tools and systems with intelligent automation that learns from your patterns, making your entire tech stack work together seamlessly and efficiently.
               </p>
               <ul className="space-y-2 mb-6">
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Custom workflow automation setup
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> API integrations and data flows
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> AI tool integration and training
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Intelligent trigger-based automation
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Process optimization and monitoring
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Real-time monitoring and alerts
                 </li>
               </ul>
             </div>
 
             {/* Service 3 */}
-            <div className="service-card">
-              <div className="w-20 h-20 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <Image src="/assets/services-icon-3.svg" alt="Avatar Icon" width={50} height={50} />
+            <div className="service-card group">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
               </div>
-              <h3 className="text-xl font-semibold text-navy-900 mb-4">AI-Powered Avatar & Media Communication</h3>
+              <h3 className="text-xl font-semibold text-charcoal-900 mb-4">AI-Powered Content Generation</h3>
               <p className="text-gray-600 mb-6">
-                Create engaging custom spokesperson avatars, AI-generated videos, and automated media for enhanced brand messaging and customer engagement. Professional media production made simple and affordable.
+                Generate high-quality content, personalized communications, and dynamic media that adapts to your audience while maintaining your brand voice and consistency.
               </p>
-              <ul className="space-y-2 mb-4">
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Custom AI avatar creation
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Dynamic content creation
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Automated video content generation
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Personalized messaging systems
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Brand-consistent media assets
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Brand-consistent media generation
                 </li>
               </ul>
-              <p className="text-sm text-gray-500 italic">*Platform costs for certain features may apply</p>
             </div>
 
             {/* Service 4 */}

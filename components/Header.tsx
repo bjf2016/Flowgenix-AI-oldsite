@@ -52,7 +52,7 @@ const Header = () => {
           <div className="logo">
             <Link href="/">
               <Image
-                src="/attached_assets/flowgenix-ai-logo.png"
+                src="/flowgenix-ai-logo.png"
                 alt="Flowgenix AI"
                 width={300}
                 height={120}
@@ -76,7 +76,7 @@ const Header = () => {
                   ) : (
                     <Link
                       href={link.href}
-                      className="text-gray-700 hover:text-navy-700 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-50"
+                      className="text-gray-700 hover:text-primary-600 font-medium px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-primary-50"
                     >
                       {link.label}
                     </Link>
