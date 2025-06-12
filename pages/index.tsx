@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/Layout'
+import ContactForm from '../components/ContactForm'
 
 const HomePage = () => {
   return (
@@ -360,63 +361,7 @@ const HomePage = () => {
               </div>
             </div>
             
-            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
-              <h3 className="text-xl font-semibold text-navy-900 mb-6 text-center">Send us a Message</h3>
-              <form className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-navy-900 mb-2">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-700 focus:border-transparent transition-colors"
-                    placeholder="Your full name"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-navy-900 mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-700 focus:border-transparent transition-colors"
-                    placeholder="your@email.com"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-navy-900 mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-navy-700 focus:border-transparent transition-colors resize-vertical"
-                    placeholder="Tell us about your business and how we can help..."
-                  ></textarea>
-                </div>
-                
-                <button
-                  type="submit"
-                  className="w-full cta-button text-center"
-                >
-                  Send Message
-                </button>
-              </form>
-              
-              <p className="text-sm text-gray-500 text-center mt-4">
-                We'll respond within 24 hours during business days.
-              </p>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </section>
