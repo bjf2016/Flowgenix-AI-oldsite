@@ -178,45 +178,49 @@ const HomePage = () => {
             </div>
 
             {/* Service 4 */}
-            <div className="service-card">
-              <div className="w-20 h-20 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <Image src="/assets/services-icon-4.svg" alt="Website Icon" width={50} height={50} />
+            <div className="service-card group">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
               </div>
-              <h3 className="text-xl font-semibold text-navy-900 mb-4">Website Design & AI Integration</h3>
+              <h3 className="text-xl font-semibold text-charcoal-900 mb-4">Data Intelligence & Analytics</h3>
               <p className="text-gray-600 mb-6">
-                Get a modern website design or refresh that includes built-in AI features such as intelligent chatbots, smart booking systems, advanced analytics, and more to enhance user experience and drive conversions.
+                Transform your data into actionable insights with AI-powered analytics that reveal patterns, predict trends, and guide strategic decisions for sustainable growth.
               </p>
               <ul className="space-y-2 mb-6">
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Modern, responsive web design
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Predictive analytics implementation
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> AI chatbot integration
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Custom reporting dashboards
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Smart booking and analytics systems
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Performance optimization insights
                 </li>
               </ul>
             </div>
 
             {/* Service 5 */}
-            <div className="service-card md:col-span-2 lg:col-span-1">
-              <div className="w-20 h-20 bg-primary-100 rounded-xl flex items-center justify-center mb-6">
-                <Image src="/assets/services-icon-5.svg" alt="Tools Icon" width={50} height={50} />
+            <div className="service-card md:col-span-2 lg:col-span-1 group">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary-100 to-secondary-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                </svg>
               </div>
-              <h3 className="text-xl font-semibold text-navy-900 mb-4">Business Optimization Tools</h3>
+              <h3 className="text-xl font-semibold text-charcoal-900 mb-4">Strategic AI Consulting</h3>
               <p className="text-gray-600 mb-6">
-                Implement custom AI-driven tools designed to improve productivity, enhance marketing efforts, generate more leads, and enable data-driven decision making that accelerates your business growth.
+                Get expert guidance on AI strategy, implementation roadmaps, and technology selection to ensure your automation initiatives deliver maximum ROI and competitive advantage.
               </p>
               <ul className="space-y-2 mb-6">
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Custom AI productivity tools
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> AI readiness assessment
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Marketing automation systems
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> Technology stack optimization
                 </li>
-                <li className="flex items-center text-green-600">
-                  <span className="mr-2">✓</span> Data analytics and reporting
+                <li className="flex items-center text-primary-600">
+                  <span className="mr-2">✓</span> ROI-focused implementation plans
                 </li>
               </ul>
             </div>
@@ -239,30 +243,30 @@ const HomePage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {/* Case Study 1 */}
             <div className="case-study-card">
-              <div className="bg-gradient-to-r from-navy-700 to-primary-500 text-white p-6">
-                <h3 className="text-xl font-semibold mb-2">Local Retail Store Doubles Lead Generation</h3>
+              <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white p-6">
+                <h3 className="text-xl font-semibold mb-2">Manufacturing Company Streamlines Operations</h3>
                 <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">
-                  Retail • Automation
+                  Manufacturing • Workflow Automation
                 </span>
               </div>
               <div className="p-6">
                 <p className="mb-4">
-                  <strong>Challenge:</strong> A family-owned retail store struggled with inconsistent lead capture and follow-up processes, missing potential customers.
+                  <strong>Challenge:</strong> Mid-size manufacturing company faced bottlenecks in production scheduling and quality control processes, leading to delays and waste.
                 </p>
                 <p className="mb-4">
-                  <strong>Solution:</strong> Implemented AI-driven workflow automation including automated email sequences, smart lead scoring, and integrated customer management.
+                  <strong>Solution:</strong> Deployed intelligent workflow automation with predictive scheduling, automated quality monitoring, and real-time production optimization.
                 </p>
                 <p className="mb-6">
-                  <strong>Result:</strong> Doubled qualified leads within 3 months and increased conversion rates by 65% through consistent, personalized follow-up.
+                  <strong>Result:</strong> Reduced production delays by 75% and improved quality metrics by 40% while eliminating manual scheduling overhead.
                 </p>
                 <div className="flex justify-center gap-8 bg-primary-50 p-4 rounded-lg">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-navy-700">100%</div>
-                    <div className="text-sm text-gray-600">Lead Increase</div>
+                    <div className="text-2xl font-bold text-primary-700">75%</div>
+                    <div className="text-sm text-gray-600">Delay Reduction</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-navy-700">65%</div>
-                    <div className="text-sm text-gray-600">Higher Conversion</div>
+                    <div className="text-2xl font-bold text-primary-700">40%</div>
+                    <div className="text-sm text-gray-600">Quality Improvement</div>
                   </div>
                 </div>
               </div>
@@ -270,7 +274,7 @@ const HomePage = () => {
 
             {/* Case Study 2 */}
             <div className="case-study-card">
-              <div className="bg-gradient-to-r from-navy-700 to-primary-500 text-white p-6">
+              <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white p-6">
                 <h3 className="text-xl font-semibold mb-2">Digital Agency Saves 10+ Hours Weekly</h3>
                 <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">
                   Digital Services • Efficiency
@@ -288,11 +292,11 @@ const HomePage = () => {
                 </p>
                 <div className="flex justify-center gap-8 bg-primary-50 p-4 rounded-lg">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-navy-700">10+</div>
+                    <div className="text-2xl font-bold text-primary-700">10+</div>
                     <div className="text-sm text-gray-600">Hours Saved Weekly</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-navy-700">40%</div>
+                    <div className="text-2xl font-bold text-primary-700">40%</div>
                     <div className="text-sm text-gray-600">More Clients</div>
                   </div>
                 </div>
@@ -301,7 +305,7 @@ const HomePage = () => {
 
             {/* Case Study 3 */}
             <div className="case-study-card">
-              <div className="bg-gradient-to-r from-navy-700 to-primary-500 text-white p-6">
+              <div className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white p-6">
                 <h3 className="text-xl font-semibold mb-2">Restaurant Boosts Reservations 40%</h3>
                 <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">
                   Food Service • Customer Service
@@ -319,11 +323,11 @@ const HomePage = () => {
                 </p>
                 <div className="flex justify-center gap-8 bg-primary-50 p-4 rounded-lg">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-navy-700">40%</div>
+                    <div className="text-2xl font-bold text-primary-700">40%</div>
                     <div className="text-sm text-gray-600">More Reservations</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-navy-700">24/7</div>
+                    <div className="text-2xl font-bold text-primary-700">24/7</div>
                     <div className="text-sm text-gray-600">Customer Service</div>
                   </div>
                 </div>
