@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
           <div className="flex flex-col items-center lg:items-start">
             <Image
-              src="/flowgenix-ai-logo-sm.png?v=2.0.0"
+              src="/flowgenix-ai-logo-sm.png?v=flowgenix-rebrand-2025"
               alt="Flowgenix AI"
               width={180}
               height={72}

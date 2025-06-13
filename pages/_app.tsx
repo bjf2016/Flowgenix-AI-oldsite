@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
 export default function App({ Component, pageProps }: AppProps) {
-  const buildVersion = "2.0.0-flowgenix"
+  const buildVersion = "flowgenix-rebrand-june13-2025"
   
   return (
     <>
@@ -14,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta httpEquiv="Pragma" content="no-cache" />
         <meta httpEquiv="Expires" content="0" />
         <meta name="version" content={buildVersion} />
+        <meta name="deployment-id" content="flowgenix-ai-rebrand" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />

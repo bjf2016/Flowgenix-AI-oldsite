@@ -1,0 +1,15 @@
+{
+  "status": "FLOWGENIX_AI_REBRAND_ACTIVE",
+  "version": "2.0.0-flowgenix-june13-2025",
+  "deployment_timestamp": "2025-06-13T17:00:00Z",
+  "brand": "Flowgenix AI",
+  "logo_file": "flowgenix-ai-logo-sm.png",
+  "cache_bust": "flowgenix-rebrand-2025",
+  "changes_applied": [
+    "Complete rebrand from King K Consulting to Flowgenix AI",
+    "New cyan/blue logo and color scheme",
+    "Header background updated to match logo",
+    "Logo sized to 300px width",
+    "Cache control headers implemented"
+  ]
+}
