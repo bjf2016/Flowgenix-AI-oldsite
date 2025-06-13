@@ -359,8 +359,8 @@ const HomePage = () => {
               <div className="space-y-4 mb-8">
                 <div className="flex items-center">
                   <strong className="text-navy-900 w-20">Email:</strong>
-                  <a href="mailto:info@kingkconsulting.com" className="text-navy-700 hover:underline">
-                    info@kingkconsulting.com
+                  <a href="mailto:info@flowgenixai.com" className="text-navy-700 hover:underline">
+                    info@flowgenixai.com
                   </a>
                 </div>
                 <div className="flex items-center">
