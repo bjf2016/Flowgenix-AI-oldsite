@@ -64,7 +64,7 @@ export default async function handler(
     // Email content
     const mailOptions = {
       from: process.env.SMTP_USER,
-      to: 'info@kingkconsulting.com',
+      to: 'info@flowgenixai.com',
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
