@@ -52,7 +52,7 @@ const Header = () => {
           <div className="logo">
             <Link href="/">
               <Image
-                src="/flowgenix-ai-logo-sm.png"
+                src={`/flowgenix-ai-logo-sm.png?v=${Date.now()}`}
                 alt="Flowgenix AI"
                 width={300}
                 height={120}
