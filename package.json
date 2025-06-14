@@ -21,6 +21,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
+    "create-astro": "^4.12.1",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "^15.3.3",
