@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [tailwind()],
   server: {
-    port: 5000,
+    port: 5001,
     host: '0.0.0.0'
   },
   output: 'static',

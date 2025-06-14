@@ -1,16 +1,437 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Flowgenix AI - Transform Your Business with AI">
+  <Header />
+  
+  <!-- Hero Section -->
+  <section id="home" class="gradient-bg pt-48 lg:pt-56 pb-16 min-h-screen flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-secondary-600/10"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="text-center lg:text-left animate-in">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-charcoal-900 mb-8 leading-tight">
+            <span class="text-gradient">Transform</span> Your Business with AI
+          </h1>
+          <p class="text-xl lg:text-2xl text-charcoal-700 font-medium mb-8">
+            Unlock intelligent workflows and automation that drive real growth for modern businesses.
+          </p>
+          <p class="text-gray-600 mb-10 text-lg leading-relaxed">
+            At Flowgenix AI, we specialize in creating seamless AI solutions that integrate naturally into your operations, boosting efficiency and unlocking new opportunities for sustainable growth.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#contact" class="cta-button">
+              Start Your AI Journey
+            </a>
+            <a href="#services" class="cta-button secondary">
+              Explore Solutions
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center animate-in">
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-2xl blur-3xl opacity-20 scale-110"></div>
+            <img
+              src="/hero-image.png"
+              alt="AI Business Growth Illustration"
+              class="w-full max-w-lg h-auto rounded-2xl shadow-2xl relative z-10 border border-primary-200/50"
+              width="500"
+              height="400"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white/70 backdrop-blur-sm">
+    <div class="container mx-auto px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl lg:text-5xl font-bold text-charcoal-900 mb-6">
+            About Flowgenix AI
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Your trusted partner in intelligent automation
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Flowgenix AI is built to bridge the gap between cutting-edge artificial intelligence and practical business operations. We understand that every business has unique challenges, processes, and goals.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              Our approach combines cutting-edge AI technology with deep business understanding, ensuring that every solution we implement drives measurable results. Whether you're looking to automate routine tasks, enhance customer experiences, or unlock insights from your data, we're here to guide you through every step of your AI transformation.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed mb-8">
+              From strategy development to implementation and ongoing support, Flowgenix AI ensures your business stays ahead of the curve in an increasingly AI-driven marketplace.
+            </p>
+            
+            <h3 class="text-2xl font-semibold text-charcoal-900 mb-4">Our Vision</h3>
+            <p class="text-lg text-gray-700 leading-relaxed mb-8">
+              To democratize AI adoption for businesses of all sizes, making intelligent automation accessible, practical, and profitable for every organization ready to embrace the future.
+            </p>
+            
+            <a href="#services" class="cta-button">
+              Explore Our Services
+            </a>
+          </div>
+          
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-2xl blur-3xl opacity-20 scale-110"></div>
+            <img
+              src="/hero-image.png"
+              alt="AI Technology Illustration"
+              class="w-full h-auto rounded-2xl shadow-2xl relative z-10 border border-primary-200/50"
+              width="500"
+              height="400"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 gradient-bg">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-charcoal-900 mb-6">
+          Our Solutions
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Comprehensive AI services designed to drive growth across every aspect of your business
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Service 1 -->
+        <div class="service-card">
+          <div class="w-16 h-16 bg-primary-400 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-900 mb-4">AI Strategy & Consulting</h3>
+          <p class="text-gray-600 mb-6">
+            Our experts work closely with your team to develop a comprehensive AI strategy aligned with your business objectives. We assess your current processes, identify optimization opportunities, and create a roadmap for successful AI implementation.
+          </p>
+          <ul class="text-gray-600 space-y-2 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Business process analysis
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              AI readiness assessment
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Implementation roadmap
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              ROI projections
+            </li>
+          </ul>
+          <a href="#contact" class="text-primary-400 hover:text-primary-500 font-medium transition-colors duration-300">
+            Learn More →
+          </a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card">
+          <div class="w-16 h-16 bg-primary-400 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-900 mb-4">Process Automation</h3>
+          <p class="text-gray-600 mb-6">
+            Streamline your operations with intelligent automation solutions that reduce manual work, minimize errors, and accelerate business processes. From simple task automation to complex workflow optimization.
+          </p>
+          <ul class="text-gray-600 space-y-2 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Workflow automation
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Document processing
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Email and communication automation
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Quality assurance automation
+            </li>
+          </ul>
+          <a href="#contact" class="text-primary-400 hover:text-primary-500 font-medium transition-colors duration-300">
+            Learn More →
+          </a>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card">
+          <div class="w-16 h-16 bg-primary-400 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-900 mb-4">Data Analytics & Insights</h3>
+          <p class="text-gray-600 mb-6">
+            Transform your raw data into actionable insights with advanced analytics and machine learning. Discover patterns, predict trends, and make data-driven decisions that propel your business forward.
+          </p>
+          <ul class="text-gray-600 space-y-2 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Predictive analytics
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Business intelligence dashboards
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Customer behavior analysis
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Market trend forecasting
+            </li>
+          </ul>
+          <a href="#contact" class="text-primary-400 hover:text-primary-500 font-medium transition-colors duration-300">
+            Learn More →
+          </a>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card">
+          <div class="w-16 h-16 bg-primary-400 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-900 mb-4">Custom AI Solutions</h3>
+          <p class="text-gray-600 mb-6">
+            Tailored AI applications designed specifically for your unique business needs. From chatbots and recommendation systems to predictive models and intelligent decision-making tools.
+          </p>
+          <ul class="text-gray-600 space-y-2 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              AI-powered chatbots
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Recommendation engines
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Computer vision applications
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Natural language processing
+            </li>
+          </ul>
+          <a href="#contact" class="text-primary-400 hover:text-primary-500 font-medium transition-colors duration-300">
+            Learn More →
+          </a>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card">
+          <div class="w-16 h-16 bg-primary-400 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-900 mb-4">Training & Support</h3>
+          <p class="text-gray-600 mb-6">
+            Comprehensive training programs and ongoing support to ensure your team can effectively leverage AI tools and maintain optimal performance long after implementation.
+          </p>
+          <ul class="text-gray-600 space-y-2 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Staff training programs
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Change management support
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Ongoing technical support
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Performance optimization
+            </li>
+          </ul>
+          <a href="#contact" class="text-primary-400 hover:text-primary-500 font-medium transition-colors duration-300">
+            Learn More →
+          </a>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card">
+          <div class="w-16 h-16 bg-primary-400 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-charcoal-900 mb-4">Strategic AI Consulting</h3>
+          <p class="text-gray-600 mb-6">
+            Long-term partnership focused on continuous AI innovation and competitive advantage. We help you stay ahead of industry trends and continuously evolve your AI capabilities.
+          </p>
+          <ul class="text-gray-600 space-y-2 mb-6">
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Technology roadmap planning
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Competitive AI analysis
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Innovation workshops
+            </li>
+            <li class="flex items-start">
+              <span class="text-primary-400 mr-2">•</span>
+              Quarterly strategy reviews
+            </li>
+          </ul>
+          <a href="#contact" class="text-primary-400 hover:text-primary-500 font-medium transition-colors duration-300">
+            Learn More →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section -->
+  <section id="success-stories" class="py-20 bg-white/70 backdrop-blur-sm">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold text-charcoal-900 mb-6">
+          Success Stories
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Real results from businesses that transformed with AI
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Success Story 1 -->
+        <div class="success-card">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold text-charcoal-900 mb-3">Manufacturing Company Increases Efficiency by 40%</h3>
+            <p class="text-gray-600 mb-4">
+              By implementing predictive maintenance and quality control automation, our client reduced downtime and improved product quality significantly.
+            </p>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-primary-400 font-medium">Manufacturing</span>
+              <span class="text-gray-500">6 months implementation</span>
+            </div>
+          </div>
+          <div class="border-t border-gray-200 pt-4">
+            <div class="flex justify-between items-center">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">40%</div>
+                <div class="text-xs text-gray-500">Efficiency Gain</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">25%</div>
+                <div class="text-xs text-gray-500">Cost Reduction</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">60%</div>
+                <div class="text-xs text-gray-500">Faster QC</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Story 2 -->
+        <div class="success-card">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold text-charcoal-900 mb-3">Retail Chain Boosts Sales with Personalized AI</h3>
+            <p class="text-gray-600 mb-4">
+              Custom recommendation engine and customer behavior analysis drove significant increases in sales and customer satisfaction.
+            </p>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-primary-400 font-medium">Retail</span>
+              <span class="text-gray-500">4 months implementation</span>
+            </div>
+          </div>
+          <div class="border-t border-gray-200 pt-4">
+            <div class="flex justify-between items-center">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">35%</div>
+                <div class="text-xs text-gray-500">Sales Increase</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">50%</div>
+                <div class="text-xs text-gray-500">Customer Retention</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">28%</div>
+                <div class="text-xs text-gray-500">Avg Order Value</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Story 3 -->
+        <div class="success-card">
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold text-charcoal-900 mb-3">Financial Services Automates 80% of Document Processing</h3>
+            <p class="text-gray-600 mb-4">
+              Intelligent document processing and automated compliance checking transformed their operations and improved accuracy.
+            </p>
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-primary-400 font-medium">Financial Services</span>
+              <span class="text-gray-500">8 months implementation</span>
+            </div>
+          </div>
+          <div class="border-t border-gray-200 pt-4">
+            <div class="flex justify-between items-center">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">80%</div>
+                <div class="text-xs text-gray-500">Process Automation</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">95%</div>
+                <div class="text-xs text-gray-500">Accuracy Rate</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-primary-400">60%</div>
+                <div class="text-xs text-gray-500">Time Savings</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#contact" class="cta-button">
+          Start Your Success Story
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <ContactForm />
+  
+  <Footer />
+</Layout>
