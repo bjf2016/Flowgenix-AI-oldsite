@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
-import { format } from 'date-fns'
+
 import Layout from '../../components/Layout'
 import { getSortedPostsData, Post } from '../../lib/blog'
 
@@ -54,7 +54,11 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
                     ))}
                   </div>
                   <time className="text-sm text-gray-500" dateTime={post.date}>
-                    {format(new Date(post.date), 'MMMM d, yyyy')}
+                    {new Date(post.date).toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
                   </time>
                 </div>
                 
