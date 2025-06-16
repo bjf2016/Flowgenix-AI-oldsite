@@ -110,7 +110,6 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
           </div>
         </div>
       </section>
-
     </Layout>
   )
 }
