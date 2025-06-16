@@ -1,9 +1,10 @@
 import React from 'react'
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { GetStaticProps } from 'next'
 import { format } from 'date-fns'
 import Layout from '../../components/Layout'
+import { getAllPostsData } from '../../lib/blog'
 import { getSortedPostsData, Post } from '../../lib/blog'
 
 interface BlogProps {
@@ -57,17 +58,17 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
                     {format(new Date(post.date), 'MMMM d, yyyy')}
                   </time>
                 </div>
-                
+
                 <h2 className="text-xl font-semibold text-navy-900 mb-4 group-hover:text-navy-700 transition-colors">
                   <Link href={`/blog/${post.slug}`}>
                     {post.title}
                   </Link>
                 </h2>
-                
+
                 <p className="text-gray-600 mb-6 line-clamp-3">
                   {post.excerpt}
                 </p>
-                
+
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-500">By {post.author}</span>
                   <Link 
@@ -80,7 +81,7 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
               </article>
             ))}
           </div>
-          
+
           {allPostsData.length === 0 && (
             <div className="text-center py-16">
               <h3 className="text-2xl font-semibold text-gray-600 mb-4">
