@@ -28,6 +28,12 @@ const Header = () => {
     setIsMenuOpen(false)
 
     if (href.startsWith('/#')) {
+      // If we're not on the home page, navigate to home first
+      if (window.location.pathname !== '/') {
+        window.location.href = href
+        return
+      }
+      
       const targetId = href.substring(2)
       const targetElement = document.getElementById(targetId)
 
