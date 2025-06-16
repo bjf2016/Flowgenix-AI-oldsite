@@ -1,10 +1,10 @@
+
 import React from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import Layout from '../../components/Layout'
-import { getAllPostsData } from '../../lib/blog'
 import { getSortedPostsData, Post } from '../../lib/blog'
 
 interface BlogProps {
@@ -20,7 +20,6 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
         <meta name="keywords" content="AI blog, business insights, automation tips, AI implementation, workflow optimization" />
       </Head>
 
-      {/* Hero Section */}
       <section className="bg-gradient-to-br from-gray-50 to-primary-50 pt-40 lg:pt-48 pb-16">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
@@ -37,7 +36,6 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
         </div>
       </section>
 
-      {/* Blog Posts */}
       <section className="bg-white py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -95,7 +93,6 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="bg-gray-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
