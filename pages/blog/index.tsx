@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
-
+import { format } from 'date-fns'
 import Layout from '../../components/Layout'
 import { getSortedPostsData, Post } from '../../lib/blog'
 
@@ -14,7 +14,7 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
   return (
     <Layout>
       <Head>
-        <title>AI Insights Blog - King K Consulting</title>
+        <title>AI Insights Blog - Flowgenix AI</title>
         <meta name="description" content="Practical AI knowledge and insights for business leaders. Learn how to implement AI solutions that drive real results for your business." />
         <meta name="keywords" content="AI blog, business insights, automation tips, AI implementation, workflow optimization" />
       </Head>
@@ -54,11 +54,7 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
                     ))}
                   </div>
                   <time className="text-sm text-gray-500" dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
+                    {format(new Date(post.date), 'MMMM d, yyyy')}
                   </time>
                 </div>
                 
@@ -114,6 +110,7 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
           </div>
         </div>
       </section>
+
     </Layout>
   )
 }
