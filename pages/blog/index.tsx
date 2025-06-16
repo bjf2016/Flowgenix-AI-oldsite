@@ -20,7 +20,7 @@ const BlogPage: React.FC<BlogProps> = ({ allPostsData }) => {
       </Head>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-50 to-primary-50 pt-32 lg:pt-40 pb-16">
+      <section className="bg-gradient-to-br from-gray-50 to-primary-50 pt-40 lg:pt-48 pb-16">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-4xl lg:text-6xl font-bold text-navy-900 mb-6">
