@@ -135,24 +135,31 @@ const description = post.seo?.metaDescription || post.excerpt;
   <Footer />
 </Layout>
 
-<script>
+<script define:vars={{ post }}>
   // Simple portable text renderer for basic content
-  const content = {post.content ? JSON.stringify(post.content) : '[]'};
+  const content = post.content || [];
   const container = document.getElementById('portable-text-content');
   
   if (content && container) {
-    const blocks = JSON.parse(content);
     let html = '';
     
-    blocks.forEach(block => {
+    content.forEach(block => {
       if (block._type === 'block') {
-        const tag = block.style || 'p';
+        const tag = block.style === 'h1' ? 'h1' : 
+                   block.style === 'h2' ? 'h2' : 
+                   block.style === 'h3' ? 'h3' : 'p';
         const text = block.children?.map(child => child.text || '').join('') || '';
-        html += `<${tag}>${text}</${tag}>`;
+        if (text.trim()) {
+          html += `<${tag}>${text}</${tag}>`;
+        }
       }
     });
     
-    container.innerHTML = html;
+    if (html) {
+      container.innerHTML = html;
+    } else {
+      container.innerHTML = '<p>Content will appear here once you publish your first blog post.</p>';
+    }
   }
 </script>
 

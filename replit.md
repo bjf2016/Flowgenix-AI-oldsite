@@ -27,27 +27,33 @@ The application uses Astro's component system with:
 ## Key Components
 
 ### Pages Structure
-- **Homepage** (`src/pages/index.astro`): Hero section with AI consulting messaging
+- **Homepage** (`src/pages/index.astro`): Hero section with AI consulting messaging and recent blog posts
+- **Blog Index** (`src/pages/blog/index.astro`): Full blog listing with category filtering
+- **Blog Posts** (`src/pages/blog/[slug].astro`): Dynamic individual blog post pages
 - **Layout System** (`src/layouts/Layout.astro`): Base layout template
 - **Component Library** (`src/components/`): Reusable UI components
 
 ### Component Architecture
 - **Layout Component** (`Layout.astro`): Base template with meta tags and styles
-- **Header Component** (`Header.astro`): Sticky navigation with smooth scrolling
+- **Header Component** (`Header.astro`): Sticky navigation with smooth scrolling and blog link
 - **Footer Component** (`Footer.astro`): Company information and contact details
 - **Contact Form** (`ContactForm.astro`): Contact form with validation
+- **Blog Components**: BlogSection, BlogCard for homepage and blog pages
+- **Sanity Integration** (`src/lib/sanity.ts`): CMS client and data fetching
 
 ### Content Management
-- **Blog Posts**: Markdown files in `/posts` directory with frontmatter metadata
+- **Sanity CMS**: Headless CMS integration for blog content management
+- **Blog System**: Complete blog functionality with categories, authors, and rich content
 - **Static Assets**: SVG icons and images in `/public` and `/assets` directories
-- **Gray-matter**: For parsing markdown frontmatter and content
+- **Dynamic Content**: Real-time content fetching from Sanity API
 
 ## Data Flow
 
 ### Content Rendering
-1. Markdown blog posts are processed using `remark` and `remark-html`
-2. Static generation at build time for optimal performance
-3. Dynamic routing for individual blog posts using `[id].tsx`
+1. Blog content is fetched from Sanity CMS using GROQ queries
+2. Static generation at build time with dynamic content updates
+3. Dynamic routing for individual blog posts using `[slug].astro`
+4. Graceful error handling when CMS is not yet configured
 
 ### Form Handling
 1. Client-side validation using React Hook Form and Yup schemas
@@ -68,6 +74,7 @@ The application uses Astro's component system with:
 - **Validation**: Email format validation and spam detection
 
 ### Third-party Services
+- **Sanity CMS**: Headless content management system for blog functionality
 - **Google Fonts**: Inter font family loading
 - **CDN Assets**: Optimized for external font and icon delivery
 
@@ -115,6 +122,11 @@ Changelog:
 - June 17, 2025. Fixed deployment configuration to use port 5000 consistently across all configs
 - June 17, 2025. Updated deployment strategy with proper Astro build and preview commands
 - June 17, 2025. Fixed deployment script permissions and created reliable port 5001 deployment configuration
+- June 17, 2025. Complete blog system implementation with Sanity CMS integration
+- June 17, 2025. Added BlogSection to homepage showing recent posts with graceful error handling
+- June 17, 2025. Created blog index page at /blog with category filtering and responsive design
+- June 17, 2025. Implemented dynamic blog post pages with rich content rendering
+- June 17, 2025. Added comprehensive Sanity setup guide (sanity-setup.md) for content management
 ```
 
 ## User Preferences
