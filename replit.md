@@ -93,7 +93,7 @@ The application is designed to work across different hosting environments:
 
 3. **Development Environment**:
    - Replit configuration with Node.js 20 and Python 3.11
-   - Astro development server on port 5001
+   - Astro development server on port 5000
    - Hot module replacement for development
 
 ### Build Configuration
@@ -112,6 +112,7 @@ Changelog:
 - June 13, 2025. Added versioning to assets and cache control headers for deployment consistency
 - June 17, 2025. Fixed port configuration issues and corrected architecture documentation (Astro, not Next.js)
 - June 17, 2025. Configured workflow to run on port 5001 with proper server settings
+- June 17, 2025. Fixed deployment configuration to use port 5000 consistently across all configs
 ```
 
 ## User Preferences
