@@ -1,44 +1,23 @@
 {
-  "name": "workspace",
+  "name": "flowgenix-ai-website",
+  "type": "module",
   "version": "1.0.0",
-  "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev -p 5000",
-    "build": "next build",
-    "start": "next start -p 5000",
-    "lint": "next lint"
+    "dev": "astro dev --host 0.0.0.0 --port 5001",
+    "start": "astro dev --host 0.0.0.0 --port 5001",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/tailwind": "^6.0.2",
-    "@hookform/resolvers": "^5.1.1",
-    "@sanity/client": "^7.6.0",
-    "@sanity/image-url": "^1.1.0",
-    "@sendgrid/mail": "^8.1.5",
-    "@types/node": "^24.0.1",
-    "@types/nodemailer": "^6.4.17",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
     "astro": "^5.9.3",
-    "autoprefixer": "^10.4.21",
-    "create-astro": "^4.12.1",
-    "date-fns": "^4.1.0",
-    "gray-matter": "^4.0.3",
-    "next": "^15.3.3",
-    "nodemailer": "^7.0.3",
-    "postcss": "^8.5.5",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-hook-form": "^7.57.0",
-    "remark": "^15.0.1",
-    "remark-html": "^16.0.1",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.8.3",
-    "yup": "^1.6.1"
+    "@astrojs/tailwind": "^5.1.2",
+    "tailwindcss": "^3.4.0",
+    "@sanity/client": "^6.0.0",
+    "@sanity/image-url": "^1.0.2",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4"
   }
 }
