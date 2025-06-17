@@ -1,23 +1,44 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     unoptimized: true,
-    domains: ['localhost', '127.0.0.1'],
   },
-  experimental: {
-    allowedDevOrigins: ['c158ae91-0070-43de-a9b8-71ffc9dbc12c-00-19r3rsbpd3z2p.spock.replit.dev'],
+  trailingSlash: true,
+  output: 'standalone',
+  typescript: {
+    ignoreBuildErrors: false,
   },
-  webpack: (config, { dev }) => {
-    if (dev) {
-      config.watchOptions = {
-        poll: 1000,
-        aggregateTimeout: 300,
-      }
-    }
-    return config
-  }
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  generateEtags: false,
+  poweredByHeader: false,
+  headers: async () => {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+          {
+            key: 'X-Deployment-Version',
+            value: 'flowgenix-rebrand-2025',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
