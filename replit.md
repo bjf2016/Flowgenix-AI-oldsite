@@ -7,15 +7,16 @@ This repository contains a modern Next.js website for Flowgenix AI (formerly Kin
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: Next.js 15.3.3 with React 19.1.0
-- **Styling**: Tailwind CSS with custom global styles
+- **Framework**: Astro 5.9.3 with TypeScript integration
+- **Styling**: Tailwind CSS with custom configuration and design system
 - **TypeScript**: Full TypeScript implementation for type safety
-- **Build Output**: Configured as standalone for flexible deployment
+- **Build Output**: Static site generation for optimal performance
 
-### Hybrid Design Approach
-The application maintains both static HTML files and Next.js components to support different deployment scenarios:
-- Static HTML files (`index.html`, `styles.css`, `script.js`) for traditional hosting
-- Next.js pages and components for modern hosting with server-side capabilities
+### Component-Based Architecture
+The application uses Astro's component system with:
+- Astro components for layout and UI elements (.astro files)
+- Static site generation with dynamic content capabilities
+- Tailwind CSS integration for responsive design
 
 ### Responsive Design
 - Mobile-first responsive design approach
@@ -26,15 +27,15 @@ The application maintains both static HTML files and Next.js components to suppo
 ## Key Components
 
 ### Pages Structure
-- **Homepage** (`pages/index.tsx`): Hero section with AI consulting messaging
-- **Blog System** (`pages/blog/`): Dynamic blog with markdown post support
-- **API Routes** (`pages/api/contact.ts`): Contact form handling with email integration
+- **Homepage** (`src/pages/index.astro`): Hero section with AI consulting messaging
+- **Layout System** (`src/layouts/Layout.astro`): Base layout template
+- **Component Library** (`src/components/`): Reusable UI components
 
 ### Component Architecture
-- **Layout Component**: Consistent header/footer across all pages
-- **Header**: Sticky navigation with scroll effects and mobile menu
-- **Footer**: Company information and contact links
-- **ContactForm**: React Hook Form with Yup validation and API integration
+- **Layout Component** (`Layout.astro`): Base template with meta tags and styles
+- **Header Component** (`Header.astro`): Sticky navigation with smooth scrolling
+- **Footer Component** (`Footer.astro`): Company information and contact details
+- **Contact Form** (`ContactForm.astro`): Contact form with validation
 
 ### Content Management
 - **Blog Posts**: Markdown files in `/posts` directory with frontmatter metadata
@@ -92,8 +93,8 @@ The application is designed to work across different hosting environments:
 
 3. **Development Environment**:
    - Replit configuration with Node.js 20 and Python 3.11
-   - Development server on port 5000
-   - Hot reloading for development
+   - Astro development server on port 5001
+   - Hot module replacement for development
 
 ### Build Configuration
 - **Standalone Output**: Self-contained deployment package
@@ -109,6 +110,8 @@ Changelog:
 - June 13, 2025. Complete rebrand to Flowgenix AI with new logo and cyan/blue color scheme
 - June 13, 2025. Implemented deployment synchronization fixes with cache busting
 - June 13, 2025. Added versioning to assets and cache control headers for deployment consistency
+- June 17, 2025. Fixed port configuration issues and corrected architecture documentation (Astro, not Next.js)
+- June 17, 2025. Configured workflow to run on port 5001 with proper server settings
 ```
 
 ## User Preferences
