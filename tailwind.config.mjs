@@ -38,7 +38,7 @@ export default {
           600: '#80868b',
           700: '#5f6368',
           800: '#3c4043',
-          900: '#2F3349', // Dark charcoal from logo
+          900: '#202629', // Dark charcoal from logo
         },
       },
       fontFamily: {
