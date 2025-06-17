@@ -164,9 +164,9 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contact-form');
-    const submitButton = document.getElementById('submit-button');
-    const formStatus = document.getElementById('form-status');
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
+    const formStatus = document.getElementById('form-status') as HTMLDivElement;
     
     if (form && submitButton && formStatus) {
       form.addEventListener('submit', async function(e) {

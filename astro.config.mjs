@@ -10,5 +10,12 @@ export default defineConfig({
   output: 'static',
   build: {
     assets: 'assets'
+  },
+  vite: {
+    server: {
+      hmr: {
+        port: 5000
+      }
+    }
   }
 });
