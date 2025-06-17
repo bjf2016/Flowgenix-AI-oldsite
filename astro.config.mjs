@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-
 export default defineConfig({
   integrations: [tailwind()],
   server: {
@@ -13,12 +12,15 @@ export default defineConfig({
   },
   vite: {
     server: {
-      hmr: {
-        port: 5000,
-        host: '0.0.0.0'
-      },
       host: '0.0.0.0',
-      allowedHosts: 'all'
+      allowedHosts: [
+        'localhost',
+        '127.0.0.1',
+        '0.0.0.0',
+        '.replit.dev',
+        '.spock.replit.dev',
+        'c158ae91-0070-43de-a9b8-71ffc9dbc12c-00-19r3rsbpd3z2p.spock.replit.dev'
+      ]
     }
   }
 });
