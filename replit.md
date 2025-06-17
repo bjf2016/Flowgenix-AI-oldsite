@@ -87,9 +87,9 @@ The application is designed to work across different hosting environments:
    - Client-side JavaScript for interactivity
 
 2. **Modern Cloud Hosting**:
-   - Next.js standalone build for containerized deployment
-   - API routes for enhanced functionality
-   - Server-side rendering capabilities
+   - Astro static build for containerized deployment
+   - Optimized static assets for CDN delivery
+   - Fast loading with pre-built HTML pages
 
 3. **Development Environment**:
    - Replit configuration with Node.js 20 and Python 3.11
@@ -97,10 +97,10 @@ The application is designed to work across different hosting environments:
    - Hot module replacement for development
 
 ### Build Configuration
-- **Standalone Output**: Self-contained deployment package
-- **Image Optimization**: Configured for various hosting environments
-- **Trailing Slash**: URL structure optimization
-- **Static Export**: Compatible with static hosting when needed
+- **Static Output**: Astro static site generation for optimal performance
+- **Port Configuration**: Consistent port 5000 across all environments
+- **Deployment Script**: Custom deploy.sh for proper build and serve process
+- **Preview Server**: Astro preview server for production-like testing
 
 ## Changelog
 
@@ -113,6 +113,7 @@ Changelog:
 - June 17, 2025. Fixed port configuration issues and corrected architecture documentation (Astro, not Next.js)
 - June 17, 2025. Configured workflow to run on port 5001 with proper server settings
 - June 17, 2025. Fixed deployment configuration to use port 5000 consistently across all configs
+- June 17, 2025. Updated deployment strategy with proper Astro build and preview commands
 ```
 
 ## User Preferences
