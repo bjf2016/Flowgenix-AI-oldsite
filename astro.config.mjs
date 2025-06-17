@@ -14,8 +14,11 @@ export default defineConfig({
   vite: {
     server: {
       hmr: {
-        port: 5000
-      }
+        port: 5000,
+        host: '0.0.0.0'
+      },
+      host: '0.0.0.0',
+      allowedHosts: 'all'
     }
   }
 });
