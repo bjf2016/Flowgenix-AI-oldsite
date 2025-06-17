@@ -29,7 +29,7 @@ run = ["sh", "-c", "python -m http.server 5000"]
 deploymentTarget = "cloudrun"
 
 [[ports]]
-localPort = 5000
+localPort = 5001
 externalPort = 80
 
 [[ports]]
