@@ -114,6 +114,7 @@ Changelog:
 - June 17, 2025. Configured workflow to run on port 5001 with proper server settings
 - June 17, 2025. Fixed deployment configuration to use port 5000 consistently across all configs
 - June 17, 2025. Updated deployment strategy with proper Astro build and preview commands
+- June 17, 2025. Fixed deployment script permissions and created reliable port 5001 deployment configuration
 ```
 
 ## User Preferences
