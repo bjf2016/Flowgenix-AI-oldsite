@@ -1,0 +1,44 @@
+---
+import { client, recentPostsQuery } from '../lib/sanity';
+import BlogCard from './BlogCard.astro';
+
+let recentPosts = [];
+try {
+  recentPosts = await client.fetch(recentPostsQuery);
+} catch (error) {
+  console.error('Error fetching recent posts:', error);
+}
+---
+
+{recentPosts.length > 0 && (
+  <section class="py-16 bg-gradient-to-br from-secondary-50 to-primary-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-charcoal-900 mb-4">
+          Latest Insights
+        </h2>
+        <p class="text-xl text-charcoal-600 max-w-3xl mx-auto">
+          Stay ahead of the curve with our latest thoughts on AI innovation, business transformation, and emerging technologies.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {recentPosts.slice(0, 3).map((post) => (
+          <BlogCard post={post} />
+        ))}
+      </div>
+      
+      <div class="text-center">
+        <a 
+          href="/blog" 
+          class="inline-flex items-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+        >
+          View All Articles
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+)}

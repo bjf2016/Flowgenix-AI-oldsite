@@ -1,0 +1,176 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { client, blogPostQuery, urlFor } from '../../lib/sanity';
+
+export async function getStaticPaths() {
+  const posts = await client.fetch(`
+    *[_type == "post" && publishedAt < now()] {
+      slug
+    }
+  `);
+
+  return posts.map((post: any) => ({
+    params: { slug: post.slug.current }
+  }));
+}
+
+const { slug } = Astro.params;
+
+let post = null;
+try {
+  post = await client.fetch(blogPostQuery, { slug });
+} catch (error) {
+  console.error('Error fetching blog post:', error);
+}
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const formatDate = (dateString: string) => {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
+const title = post.seo?.metaTitle || post.title;
+const description = post.seo?.metaDescription || post.excerpt;
+---
+
+<Layout title={`${title} - Flowgenix AI`} description={description}>
+  <Header />
+  
+  <main class="min-h-screen bg-white">
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <!-- Breadcrumbs -->
+      <nav class="flex items-center space-x-2 text-sm text-charcoal-500 mb-8">
+        <a href="/" class="hover:text-primary-600 transition-colors">Home</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        <a href="/blog" class="hover:text-primary-600 transition-colors">Blog</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+        <span class="text-charcoal-700">{post.title}</span>
+      </nav>
+
+      <!-- Article Header -->
+      <header class="mb-12">
+        {post.categories && post.categories.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-4">
+            {post.categories.map((category) => (
+              <span class="inline-block px-3 py-1 text-sm font-medium bg-primary-100 text-primary-700 rounded-full">
+                {category.title}
+              </span>
+            ))}
+          </div>
+        )}
+        
+        <h1 class="text-4xl md:text-5xl font-bold text-charcoal-900 mb-6 leading-tight">
+          {post.title}
+        </h1>
+        
+        {post.excerpt && (
+          <p class="text-xl text-charcoal-600 mb-6 leading-relaxed">
+            {post.excerpt}
+          </p>
+        )}
+        
+        <div class="flex items-center text-charcoal-500 mb-8">
+          {post.author && (
+            <div class="flex items-center mr-6">
+              {post.author.image && (
+                <img 
+                  src={urlFor(post.author.image).width(40).height(40).url()} 
+                  alt={post.author.name}
+                  class="w-10 h-10 rounded-full mr-3"
+                />
+              )}
+              <span class="font-medium">{post.author.name}</span>
+            </div>
+          )}
+          <time datetime={post.publishedAt}>
+            {formatDate(post.publishedAt)}
+          </time>
+        </div>
+        
+        {post.mainImage && (
+          <div class="aspect-video rounded-xl overflow-hidden mb-8">
+            <img 
+              src={urlFor(post.mainImage).width(800).height(450).url()} 
+              alt={post.mainImage.alt || post.title}
+              class="w-full h-full object-cover"
+            />
+          </div>
+        )}
+      </header>
+
+      <!-- Article Content -->
+      <div class="prose prose-lg prose-charcoal max-w-none">
+        <div id="portable-text-content">
+          <!-- Portable Text content will be rendered here -->
+        </div>
+      </div>
+
+      <!-- Back to Blog -->
+      <div class="mt-16 pt-8 border-t border-secondary-200">
+        <a 
+          href="/blog"
+          class="inline-flex items-center text-primary-600 font-medium hover:text-primary-700 transition-colors"
+        >
+          <svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Back to Blog
+        </a>
+      </div>
+    </article>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  // Simple portable text renderer for basic content
+  const content = {post.content ? JSON.stringify(post.content) : '[]'};
+  const container = document.getElementById('portable-text-content');
+  
+  if (content && container) {
+    const blocks = JSON.parse(content);
+    let html = '';
+    
+    blocks.forEach(block => {
+      if (block._type === 'block') {
+        const tag = block.style || 'p';
+        const text = block.children?.map(child => child.text || '').join('') || '';
+        html += `<${tag}>${text}</${tag}>`;
+      }
+    });
+    
+    container.innerHTML = html;
+  }
+</script>
+
+<style>
+.prose {
+  color: theme('colors.charcoal.700');
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: theme('colors.charcoal.900');
+  font-weight: 700;
+}
+
+.prose a {
+  color: theme('colors.primary.600');
+}
+
+.prose a:hover {
+  color: theme('colors.primary.700');
+}
+</style>
