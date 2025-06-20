@@ -45,7 +45,7 @@ const description = post.seo?.metaDescription || post.excerpt;
 <Layout title={`${title} - Flowgenix AI`} description={description}>
   <Header />
 
-  <main class="min-h-screen bg-white">
+  <main class="min-h-screen bg-white pt-24">
     <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <!-- Breadcrumbs -->
       <nav class="flex items-center space-x-2 text-sm text-charcoal-500 mb-8">
@@ -113,7 +113,7 @@ const description = post.seo?.metaDescription || post.excerpt;
 
       <!-- Render Sanity Portable Text content -->
       <div class="prose prose-lg prose-charcoal max-w-none">
-        <PortableTextRenderer client:load value={post.content} />
+        <PortableTextRenderer client:only="react" value={post.content} />
       </div>
 
       <!-- Back to Blog -->
