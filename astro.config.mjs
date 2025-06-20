@@ -1,12 +1,15 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import node from '@astrojs/node'; // ✅ Added Node adapter
+
 export default defineConfig({
+  output: 'server', // ✅ Enable SSR
+  adapter: node({ mode: 'standalone' }), // ✅ Use Node adapter
   integrations: [tailwind()],
   server: {
     port: 5000,
     host: '0.0.0.0'
   },
-  output: 'static',
   build: {
     assets: 'assets'
   },
