@@ -1,17 +1,18 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import node from '@astrojs/node'; // ✅ Added Node adapter
+import node from '@astrojs/node';
+import react from '@astrojs/react'; // ✅ This must be here
 
 export default defineConfig({
-  output: 'server', // ✅ Enable SSR
-  adapter: node({ mode: 'standalone' }), // ✅ Use Node adapter
-  integrations: [tailwind()],
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
+  integrations: [tailwind(), react()], // ✅ Make sure react() is called
   server: {
     port: 5000,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
   },
   build: {
-    assets: 'assets'
+    assets: 'assets',
   },
   vite: {
     server: {
@@ -22,7 +23,7 @@ export default defineConfig({
         '0.0.0.0',
         '.replit.dev',
         '.spock.replit.dev',
-        'c158ae91-0070-43de-a9b8-71ffc9dbc12c-00-19r3rsbpd3z2p.spock.replit.dev'
+        'c158ae91-0070-43de-a9b8-71ffc9dbc12c-00-19r3rsbpd3z2p.spock.replit.dev',
       ]
     }
   }

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import PortableTextRenderer from '../../components/PortableTextRenderer.tsx';
 import { client, blogPostQuery, urlFor } from '../../lib/sanity';
 
 export async function getStaticPaths() {
@@ -43,7 +44,7 @@ const description = post.seo?.metaDescription || post.excerpt;
 
 <Layout title={`${title} - Flowgenix AI`} description={description}>
   <Header />
-  
+
   <main class="min-h-screen bg-white">
     <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <!-- Breadcrumbs -->
@@ -70,17 +71,17 @@ const description = post.seo?.metaDescription || post.excerpt;
             ))}
           </div>
         )}
-        
+
         <h1 class="text-4xl md:text-5xl font-bold text-charcoal-900 mb-6 leading-tight">
           {post.title}
         </h1>
-        
+
         {post.excerpt && (
           <p class="text-xl text-charcoal-600 mb-6 leading-relaxed">
             {post.excerpt}
           </p>
         )}
-        
+
         <div class="flex items-center text-charcoal-500 mb-8">
           {post.author && (
             <div class="flex items-center mr-6">
@@ -98,7 +99,7 @@ const description = post.seo?.metaDescription || post.excerpt;
             {formatDate(post.publishedAt)}
           </time>
         </div>
-        
+
         {post.mainImage && (
           <div class="aspect-video rounded-xl overflow-hidden mb-8">
             <img 
@@ -110,11 +111,9 @@ const description = post.seo?.metaDescription || post.excerpt;
         )}
       </header>
 
-      <!-- Article Content -->
+      <!-- Render Sanity Portable Text content -->
       <div class="prose prose-lg prose-charcoal max-w-none">
-        <div id="portable-text-content">
-          <!-- Portable Text content will be rendered here -->
-        </div>
+        <PortableTextRenderer client:load value={post.content} />
       </div>
 
       <!-- Back to Blog -->
@@ -131,37 +130,9 @@ const description = post.seo?.metaDescription || post.excerpt;
       </div>
     </article>
   </main>
-  
+
   <Footer />
 </Layout>
-
-<script define:vars={{ post }}>
-  // Simple portable text renderer for basic content
-  const content = post.content || [];
-  const container = document.getElementById('portable-text-content');
-  
-  if (content && container) {
-    let html = '';
-    
-    content.forEach(block => {
-      if (block._type === 'block') {
-        const tag = block.style === 'h1' ? 'h1' : 
-                   block.style === 'h2' ? 'h2' : 
-                   block.style === 'h3' ? 'h3' : 'p';
-        const text = block.children?.map(child => child.text || '').join('') || '';
-        if (text.trim()) {
-          html += `<${tag}>${text}</${tag}>`;
-        }
-      }
-    });
-    
-    if (html) {
-      container.innerHTML = html;
-    } else {
-      container.innerHTML = '<p>Content will appear here once you publish your first blog post.</p>';
-    }
-  }
-</script>
 
 <style>
 .prose {
