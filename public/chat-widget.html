@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlowGenixAI Chat Widget</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f4f8;
+      }
+
+      .chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background: white;
+        overflow: hidden;
+      }
+
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+      }
+
+      .message {
+        margin-bottom: 12px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        max-width: 85%;
+      }
+
+      .message.user {
+        background: #009ce3;
+        color: white;
+        align-self: flex-end;
+      }
+
+      .message.bot {
+        background: #e5e7eb;
+        color: #111827;
+        align-self: flex-start;
+      }
+
+      .chat-input-container {
+        display: flex;
+        padding: 12px;
+        border-top: 1px solid #ccc;
+      }
+
+      #chat-input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+      }
+
+      #chat-send {
+        padding: 10px 16px;
+        margin-left: 8px;
+        background: #009ce3;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .typing {
+        font-style: italic;
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-container">
+        <input
+          type="text"
+          id="chat-input"
+          placeholder="Ask me anything..."
+          required
+        />
+        <button id="chat-send">Send</button>
+      </div>
+    </div>
+
+    <script>
+      const messages = document.getElementById("chat-messages");
+      const input = document.getElementById("chat-input");
+
+      const appendMessage = (text, sender) => {
+        const msg = document.createElement("div");
+        msg.className = "message " + sender;
+
+        if (sender === "bot") {
+          const formatted = text.replace(/\n/g, "<br><br>");
+          msg.innerHTML = formatted; // allows HTML formatting
+        } else {
+          msg.textContent = text; // user input stays plain text
+        }
+
+        messages.appendChild(msg);
+        messages.scrollTop = messages.scrollHeight;
+      };
+
+      document
+        .getElementById("chat-send")
+        .addEventListener("click", async () => {
+          const question = input.value.trim();
+          if (!question) return;
+
+          appendMessage(question, "user");
+          input.value = "";
+
+          const typingMsg = document.createElement("div");
+          typingMsg.className = "message bot typing";
+          typingMsg.textContent = "Typing...";
+          messages.appendChild(typingMsg);
+          messages.scrollTop = messages.scrollHeight;
+
+          try {
+            const res = await fetch("/api/ask-gpt", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ message: question }),
+            });
+
+            const data = await res.json();
+            typingMsg.remove();
+            appendMessage(data.reply || "⚠️ No reply received.", "bot");
+          } catch (err) {
+            typingMsg.remove();
+            console.error("Chat error:", err);
+            appendMessage("⚠️ Something went wrong. Please try again.", "bot");
+          }
+        });
+    </script>
+  </body>
+</html>
