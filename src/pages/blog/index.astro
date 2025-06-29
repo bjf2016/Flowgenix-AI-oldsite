@@ -3,41 +3,114 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BlogCard from '../../components/BlogCard.astro';
-import { client, blogPostsQuery, categoriesQuery } from '../../lib/sanity';
+import BlogSearch from '../../components/BlogSearch.astro';
+import BlogPagination from '../../components/BlogPagination.astro';
+import { 
+  client, 
+  paginatedBlogPostsQuery, 
+  countBlogPostsQuery,
+  categoriesQuery,
+  createSearchParams 
+} from '../../lib/sanity';
+
+// Get URL parameters
+const url = new URL(Astro.request.url);
+const currentPage = parseInt(url.searchParams.get('page') || '1');
+const postsPerPage = parseInt(url.searchParams.get('per_page') || '10');
+const searchQuery = url.searchParams.get('search') || '';
+const selectedCategory = url.searchParams.get('category') || '';
+
+// Calculate pagination
+const start = (currentPage - 1) * postsPerPage;
+const end = postsPerPage >= 999 ? 999 : start + postsPerPage;
 
 let posts = [];
 let categories = [];
+let totalPosts = 0;
 let hasError = false;
 
 try {
-  [posts, categories] = await Promise.all([
-    client.fetch(blogPostsQuery),
-    client.fetch(categoriesQuery)
+  // Prepare query parameters
+  const queryParams = {
+    start,
+    end,
+    ...(searchQuery && { search: createSearchParams(searchQuery) }),
+    ...(selectedCategory && { category: selectedCategory })
+  };
+
+  // Fetch data in parallel
+  const [postsResult, categoriesResult, totalPostsResult] = await Promise.all([
+    client.fetch(paginatedBlogPostsQuery, queryParams),
+    client.fetch(categoriesQuery),
+    client.fetch(countBlogPostsQuery, queryParams)
   ]);
+
+  posts = postsResult;
+  categories = categoriesResult;
+  totalPosts = totalPostsResult;
 } catch (error) {
   console.error('Error fetching blog data:', error);
   hasError = true;
   posts = [];
   categories = [];
+  totalPosts = 0;
 }
 
-const title = 'Blog - Flowgenix AI';
-const description = 'Expert insights on AI consulting, business automation, and digital transformation from the Flowgenix AI team.';
+// Calculate total pages
+const totalPages = Math.ceil(totalPosts / postsPerPage);
+
+// SEO and meta information
+let title = 'Blog - Flowgenix AI';
+let description = 'Expert insights on AI consulting, business automation, and digital transformation from the Flowgenix AI team.';
+
+if (searchQuery) {
+  title = `Search results for "${searchQuery}" - Flowgenix AI Blog`;
+  description = `Find articles about "${searchQuery}" and discover AI consulting insights from Flowgenix AI.`;
+} else if (selectedCategory) {
+  const categoryName = categories.find(c => c.slug.current === selectedCategory)?.title || selectedCategory;
+  title = `${categoryName} Articles - Flowgenix AI Blog`;
+  description = `Explore ${categoryName.toLowerCase()} articles and insights from Flowgenix AI experts.`;
+}
+
+if (currentPage > 1) {
+  title += ` - Page ${currentPage}`;
+}
+
+// Canonical URL for SEO
+const canonicalUrl = new URL('/blog', Astro.site || 'https://flowgenixai.com');
+if (currentPage > 1) canonicalUrl.searchParams.set('page', currentPage.toString());
+if (postsPerPage !== 10) canonicalUrl.searchParams.set('per_page', postsPerPage.toString());
+if (searchQuery) canonicalUrl.searchParams.set('search', searchQuery);
+if (selectedCategory) canonicalUrl.searchParams.set('category', selectedCategory);
 ---
 
 <Layout title={title} description={description}>
   <Header />
-  
+
+  <!-- Canonical URL for SEO -->
+  <link rel="canonical" href={canonicalUrl.toString()} slot="head" />
+
+  <!-- Open Graph meta tags -->
+  <meta property="og:title" content={title} slot="head" />
+  <meta property="og:description" content={description} slot="head" />
+  <meta property="og:type" content="website" slot="head" />
+  <meta property="og:url" content={canonicalUrl.toString()} slot="head" />
+
   <main class="min-h-screen bg-white pt-20">
     <!-- Hero Section -->
     <section class="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-20 pt-32">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
           <h1 class="text-5xl font-bold mb-6">
-            AI Insights & Innovation
+            {searchQuery ? `Search Results` : selectedCategory ? `${categories.find(c => c.slug.current === selectedCategory)?.title || selectedCategory} Articles` : 'AI Insights & Innovation'}
           </h1>
           <p class="text-xl text-primary-100 max-w-3xl mx-auto">
-            Discover the latest trends, strategies, and success stories in artificial intelligence and business transformation.
+            {searchQuery 
+              ? `Find articles and insights related to "${searchQuery}"`
+              : selectedCategory 
+                ? `Discover the latest insights in ${categories.find(c => c.slug.current === selectedCategory)?.title?.toLowerCase() || selectedCategory}`
+                : 'Discover the latest trends, strategies, and success stories in artificial intelligence and business transformation.'
+            }
           </p>
         </div>
       </div>
@@ -46,32 +119,92 @@ const description = 'Expert insights on AI consulting, business automation, and 
     <!-- Blog Content -->
     <section class="py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {categories.length > 0 && (
-          <div class="mb-12">
-            <h2 class="text-2xl font-bold text-charcoal-900 mb-6">Browse by Category</h2>
-            <div class="flex flex-wrap gap-3">
-              <a href="/blog" class="px-4 py-2 bg-primary-600 text-white rounded-full hover:bg-primary-700 transition-colors">
-                All Posts
-              </a>
-              {categories.map((category) => (
-                <a 
-                  href={`/blog/category/${category.slug.current}`}
-                  class="px-4 py-2 bg-secondary-100 text-charcoal-700 rounded-full hover:bg-secondary-200 transition-colors"
-                >
-                  {category.title}
-                </a>
-              ))}
+
+        <!-- Search and Filters -->
+        <BlogSearch 
+          searchQuery={searchQuery}
+          selectedCategory={selectedCategory}
+          categories={categories}
+          totalResults={totalPosts}
+        />
+
+        <!-- Loading State -->
+        {hasError && (
+          <div class="text-center py-16">
+            <div class="max-w-md mx-auto">
+              <svg class="mx-auto h-16 w-16 text-red-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.081 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+              </svg>
+              <h3 class="text-lg font-medium text-charcoal-900 mb-2">Unable to Load Blog Content</h3>
+              <p class="text-charcoal-600 mb-4">We're having trouble connecting to our content management system.</p>
+              <div class="text-sm text-primary-600 bg-primary-50 rounded-lg p-4 mt-4">
+                <p class="font-medium mb-1">Ready to add content?</p>
+                <p>Check the sanity-setup.md file for step-by-step instructions to set up your blog content.</p>
+              </div>
             </div>
           </div>
         )}
 
-        {posts.length > 0 ? (
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
-              <BlogCard post={post} />
-            ))}
+        <!-- No Results -->
+        {!hasError && posts.length === 0 && (searchQuery || selectedCategory) && (
+          <div class="text-center py-16">
+            <div class="max-w-md mx-auto">
+              <svg class="mx-auto h-16 w-16 text-charcoal-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              <h3 class="text-lg font-medium text-charcoal-900 mb-2">No Articles Found</h3>
+              <p class="text-charcoal-600 mb-6">
+                {searchQuery 
+                  ? `No articles found for "${searchQuery}". Try different keywords or browse our categories.`
+                  : `No articles found in this category. Check out our other content.`
+                }
+              </p>
+              <a 
+                href="/blog" 
+                class="inline-flex items-center px-4 py-2 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                View All Articles
+              </a>
+            </div>
           </div>
-        ) : (
+        )}
+
+        <!-- Blog Posts Grid -->
+        {!hasError && posts.length > 0 && (
+          <>
+            <!-- Results Summary -->
+            <div class="mb-8 text-center">
+              <p class="text-charcoal-600">
+                {searchQuery || selectedCategory ? (
+                  `Found ${totalPosts} article${totalPosts !== 1 ? 's' : ''}`
+                ) : (
+                  `${totalPosts} article${totalPosts !== 1 ? 's' : ''} published`
+                )}
+              </p>
+            </div>
+
+            <!-- Posts Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+              {posts.map((post) => (
+                <BlogCard post={post} />
+              ))}
+            </div>
+
+            <!-- Pagination -->
+            <BlogPagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              postsPerPage={postsPerPage}
+              totalPosts={totalPosts}
+              baseUrl="/blog"
+              searchQuery={searchQuery}
+              category={selectedCategory}
+            />
+          </>
+        )}
+
+        <!-- Empty State for No Content -->
+        {!hasError && posts.length === 0 && !searchQuery && !selectedCategory && (
           <div class="text-center py-16">
             <div class="max-w-md mx-auto">
               <svg class="mx-auto h-16 w-16 text-primary-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,18 +212,37 @@ const description = 'Expert insights on AI consulting, business automation, and 
               </svg>
               <h3 class="text-lg font-medium text-charcoal-900 mb-2">Blog Content Coming Soon</h3>
               <p class="text-charcoal-600 mb-4">We're setting up our content management system with Sanity CMS.</p>
-              {hasError && (
-                <div class="text-sm text-primary-600 bg-primary-50 rounded-lg p-4 mt-4">
-                  <p class="font-medium mb-1">Ready to add content?</p>
-                  <p>Check the sanity-setup.md file for step-by-step instructions to set up your blog content.</p>
-                </div>
-              )}
+              <div class="text-sm text-primary-600 bg-primary-50 rounded-lg p-4 mt-4">
+                <p class="font-medium mb-1">Ready to add content?</p>
+                <p>Check the sanity-setup.md file for step-by-step instructions to set up your blog content.</p>
+              </div>
             </div>
           </div>
         )}
       </div>
     </section>
   </main>
-  
+
   <Footer />
 </Layout>
+
+<style>
+  /* Smooth loading animations */
+  .grid {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Enhanced hover effects */
+  .grid > * {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .grid > *:hover {
+    transform: translateY(-2px);
+  }
+</style>
