@@ -3,14 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BlogCard from '../../components/BlogCard.astro';
-import BlogSearch from '../../components/BlogSearch.astro';
-import BlogPagination from '../../components/BlogPagination.astro';
+import { client, blogPostsQuery, categoriesQuery } from '../../lib/sanity';
 import { 
   client, 
-  paginatedBlogPostsQuery, 
-  countBlogPostsQuery,
-  categoriesQuery,
-  createSearchParams 
+  blogPostsQuery,
+  categoriesQuery
 } from '../../lib/sanity';
 
 // Get URL parameters
@@ -39,10 +36,9 @@ try {
   };
 
   // Fetch data in parallel
-  const [postsResult, categoriesResult, totalPostsResult] = await Promise.all([
-    client.fetch(paginatedBlogPostsQuery, queryParams),
-    client.fetch(categoriesQuery),
-    client.fetch(countBlogPostsQuery, queryParams)
+  const [postsResult, categoriesResult] = await Promise.all([
+    client.fetch(blogPostsQuery),
+    client.fetch(categoriesQuery)
   ]);
 
   posts = postsResult;
