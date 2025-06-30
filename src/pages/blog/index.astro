@@ -3,57 +3,60 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import BlogSearch from '../../components/BlogSearch.astro';
+import BlogPagination from '../../components/BlogPagination.astro';
 import { client, blogPostsQuery, categoriesQuery } from '../../lib/sanity';
-import { 
-  client, 
-  blogPostsQuery,
-  categoriesQuery
-} from '../../lib/sanity';
 
-// Get URL parameters
+// Get URL parameters for pagination and filtering
 const url = new URL(Astro.request.url);
 const currentPage = parseInt(url.searchParams.get('page') || '1');
 const postsPerPage = parseInt(url.searchParams.get('per_page') || '10');
 const searchQuery = url.searchParams.get('search') || '';
 const selectedCategory = url.searchParams.get('category') || '';
 
-// Calculate pagination
-const start = (currentPage - 1) * postsPerPage;
-const end = postsPerPage >= 999 ? 999 : start + postsPerPage;
-
-let posts = [];
+let allPosts = [];
 let categories = [];
-let totalPosts = 0;
 let hasError = false;
 
 try {
-  // Prepare query parameters
-  const queryParams = {
-    start,
-    end,
-    ...(searchQuery && { search: createSearchParams(searchQuery) }),
-    ...(selectedCategory && { category: selectedCategory })
-  };
-
-  // Fetch data in parallel
-  const [postsResult, categoriesResult] = await Promise.all([
+  // Fetch all posts and categories (using your working queries)
+  [allPosts, categories] = await Promise.all([
     client.fetch(blogPostsQuery),
     client.fetch(categoriesQuery)
   ]);
-
-  posts = postsResult;
-  categories = categoriesResult;
-  totalPosts = totalPostsResult;
 } catch (error) {
   console.error('Error fetching blog data:', error);
   hasError = true;
-  posts = [];
+  allPosts = [];
   categories = [];
-  totalPosts = 0;
 }
 
-// Calculate total pages
+// Client-side filtering and pagination
+let filteredPosts = allPosts;
+
+// Apply search filter
+if (searchQuery) {
+  filteredPosts = allPosts.filter(post => 
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+}
+
+// Apply category filter
+if (selectedCategory) {
+  filteredPosts = filteredPosts.filter(post => 
+    post.categories && post.categories.some(cat => cat.slug.current === selectedCategory)
+  );
+}
+
+// Calculate pagination
+const totalPosts = filteredPosts.length;
 const totalPages = Math.ceil(totalPosts / postsPerPage);
+const startIndex = (currentPage - 1) * postsPerPage;
+const endIndex = startIndex + postsPerPage;
+
+// Get posts for current page (or all if "All" is selected)
+const posts = postsPerPage >= 999 ? filteredPosts : filteredPosts.slice(startIndex, endIndex);
 
 // SEO and meta information
 let title = 'Blog - Flowgenix AI';
