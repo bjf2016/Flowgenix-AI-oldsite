@@ -15,7 +15,8 @@ interface Config {
 function getRequiredEnvVar(name: string): string {
   const value = import.meta.env[name] || process.env[name];
   if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
+    console.warn(`Warning: Missing environment variable: ${name}`);
+    return ''; // Return empty string instead of throwing
   }
   return value;
 }
@@ -26,12 +27,12 @@ function getOptionalEnvVar(name: string, defaultValue: string = ''): string {
 
 export const config: Config = {
   sanity: {
-    projectId: getRequiredEnvVar('SANITY_PROJECT_ID'),
-    dataset: getRequiredEnvVar('SANITY_DATASET'),
-    apiToken: getRequiredEnvVar('SANITY_API_TOKEN'),
+    projectId: getOptionalEnvVar('SANITY_PROJECT_ID'),
+    dataset: getOptionalEnvVar('SANITY_DATASET'),
+    apiToken: getOptionalEnvVar('SANITY_API_TOKEN'),
   },
   openrouter: {
-    apiKey: getRequiredEnvVar('OPENROUTER_API_KEY'),
+    apiKey: getOptionalEnvVar('OPENROUTER_API_KEY'),
   },
 };
 

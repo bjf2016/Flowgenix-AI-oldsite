@@ -1,14 +1,18 @@
 import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
-import { config } from "./config";
 
-export const client = createClient({
-  projectId: config.sanity.projectId,
-  dataset: config.sanity.dataset,
-  token: config.sanity.apiToken,
+const projectId = import.meta.env.SANITY_PROJECT_ID || '';
+const dataset = import.meta.env.SANITY_DATASET || '';
+const token = import.meta.env.SANITY_API_TOKEN || '';
+
+// Only create client if we have required config
+export const client = projectId && dataset ? createClient({
+  projectId,
+  dataset,
+  token,
   useCdn: true,
   apiVersion: "2024-01-01",
-});
+}) : null;
 
 const builder = imageUrlBuilder(client);
 

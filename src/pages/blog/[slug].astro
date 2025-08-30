@@ -21,7 +21,9 @@ const { slug } = Astro.params;
 
 let post = null;
 try {
-  post = await client.fetch(blogPostQuery, { slug });
+  if (client) {
+    post = await client.fetch(blogPostQuery, { slug });
+  }
 } catch (error) {
   console.error('Error fetching blog post:', error);
 }
