@@ -1,4 +1,6 @@
 ---
+import ChatWidget from '../components/ChatWidget.astro';
+
 export interface Props {
   title: string;
   description?: string;
@@ -83,54 +85,27 @@ const { title, description = "Transform your business with AI. Flowgenix AI prov
       }
     </style>
 
-<!-- Simple Contact Button -->
-<div id="contact-launcher" style="position:fixed;bottom:20px;right:20px;z-index:9998;">
-  <button id="open-contact" style="background:#009CE3;border:none;border-radius:50%;width:60px;height:60px;box-shadow:0 4px 8px rgba(0,0,0,0.2);cursor:pointer;display:flex;align-items:center;justify-content:center;">
-    <svg style="width:28px;height:28px;color:white;" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-    </svg>
+<div id="chat-launcher" style="position:fixed;bottom:20px;right:20px;z-index:9998;">
+  <button id="open-chat" style="background:#009CE3;border:none;border-radius:50%;width:60px;height:60px;box-shadow:0 4px 8px rgba(0,0,0,0.2);cursor:pointer;">
+    <span style="font-size:28px;color:white;">💬</span>
   </button>
 </div>
 
-<!-- Contact Modal -->
-<div id="contact-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:white;border-radius:16px;box-shadow:0 0 20px rgba(0,0,0,0.3);width:90%;max-width:400px;padding:24px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-      <h3 style="margin:0;color:#202629;font-size:20px;font-weight:600;">Get in Touch</h3>
-      <button id="close-contact" style="background:none;border:none;font-size:24px;cursor:pointer;color:#666;">×</button>
-    </div>
-    <p style="color:#666;margin-bottom:20px;">Ready to transform your business with AI? Let's start the conversation.</p>
-    <div style="space-y:12px;">
-      <a href="mailto:info@flowgenixai.com" style="display:block;padding:12px;background:#f8f9fa;border-radius:8px;text-decoration:none;color:#202629;margin-bottom:8px;">
-        📧 info@flowgenixai.com
-      </a>
-      <a href="tel:+19254567890" style="display:block;padding:12px;background:#f8f9fa;border-radius:8px;text-decoration:none;color:#202629;margin-bottom:8px;">
-        📞 (925) 456-7890
-      </a>
-      <a href="#contact" onclick="document.getElementById('contact-modal').style.display='none'" style="display:block;padding:12px;background:#009CE3;color:white;border-radius:8px;text-decoration:none;text-align:center;">
-        📝 Contact Form
-      </a>
-    </div>
-  </div>
-</div>
+<iframe 
+  id="chat-frame"
+  src="/chat-widget.html"
+  style="display:none;position:fixed;bottom:90px;right:20px;width:360px;height:500px;border:0;border-radius:16px;box-shadow:0 0 10px rgba(0,0,0,0.2);z-index:9999;"
+  title="FlowGenixAI Chat Widget"
+></iframe>
 
 <script>
-  const openBtn = document.getElementById('open-contact');
-  const modal = document.getElementById('contact-modal');
-  const closeBtn = document.getElementById('close-contact');
+  const openBtn = document.getElementById('open-chat');
+  const iframe = document.getElementById('chat-frame');
+  let isOpen = false;
 
-  openBtn?.addEventListener('click', () => {
-    modal.style.display = 'flex';
-  });
-
-  closeBtn?.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
+  openBtn.addEventListener('click', () => {
+    isOpen = !isOpen;
+    iframe.style.display = isOpen ? 'block' : 'none';
   });
 </script>
 

@@ -6,11 +6,7 @@ let recentPosts = [];
 let hasError = false;
 
 try {
-  if (client) {
-    recentPosts = await client.fetch(recentPostsQuery);
-  } else {
-    hasError = true;
-  }
+  recentPosts = await client.fetch(recentPostsQuery);
 } catch (error) {
   console.error('Error fetching recent posts:', error);
   hasError = true;
