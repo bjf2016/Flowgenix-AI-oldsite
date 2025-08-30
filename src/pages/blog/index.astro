@@ -3,8 +3,6 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BlogCard from '../../components/BlogCard.astro';
-import BlogSearch from '../../components/BlogSearch.astro';
-import BlogPagination from '../../components/BlogPagination.astro';
 import { client, blogPostsQuery, categoriesQuery } from '../../lib/sanity';
 
 // Get URL parameters for pagination and filtering
@@ -119,13 +117,7 @@ if (selectedCategory) canonicalUrl.searchParams.set('category', selectedCategory
     <section class="py-16">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <!-- Search and Filters -->
-        <BlogSearch 
-          searchQuery={searchQuery}
-          selectedCategory={selectedCategory}
-          categories={categories}
-          totalResults={totalPosts}
-        />
+        <!-- Search and filter functionality removed during cleanup -->
 
         <!-- Loading State -->
         {hasError && (
@@ -189,16 +181,7 @@ if (selectedCategory) canonicalUrl.searchParams.set('category', selectedCategory
               ))}
             </div>
 
-            <!-- Pagination -->
-            <BlogPagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              postsPerPage={postsPerPage}
-              totalPosts={totalPosts}
-              baseUrl="/blog"
-              searchQuery={searchQuery}
-              category={selectedCategory}
-            />
+            <!-- Pagination functionality removed during cleanup -->
           </>
         )}
 
