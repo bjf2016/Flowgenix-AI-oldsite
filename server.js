@@ -9,8 +9,15 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 5000;
 
-const OPENROUTER_API_KEY =
-  "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";
+// const OPENROUTER_API_KEY =
+//   "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";
+
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+if (!OPENROUTER_API_KEY) {
+  console.error("Missing OPENROUTER_API_KEY env var");
+  // Fail fast so we never call OpenRouter without a key:
+  // (You can choose to return a friendly message to the client instead.)
+}
 
 app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.json());
@@ -18,6 +25,13 @@ app.use(express.json());
 app.post("/api/ask-gpt", async (req, res) => {
   const { question } = req.body;
   console.log("📨 Incoming question:", question);
+
+  // ⛑️ Guard: fail early if the server isn't configured
+  if (!OPENROUTER_API_KEY) {
+    return res
+      .status(500)
+      .json({ reply: "Server not configured (missing API key)." });
+  }
 
   try {
     const response = await fetch(
