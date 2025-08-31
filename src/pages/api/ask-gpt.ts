@@ -24,14 +24,18 @@ const offTopicReply =
   "I specialize in AI consulting topics related to FlowGenixAI. Would you like help with something in that area?";
 
 export const POST: APIRoute = async ({ request }) => {
-  const body = await request.json();
-  const userMessage: string = body.message?.toLowerCase();
+  const body = await request.json().catch(() => ({}) as any);
+  const rawInput =
+    body && typeof body === "object" ? (body.message ?? body.question) : "";
 
-  if (!userMessage) {
+  if (typeof rawInput !== "string" || !rawInput.trim()) {
     return new Response(JSON.stringify({ error: "No message provided" }), {
       status: 400,
+      headers: { "Content-Type": "application/json" },
     });
   }
+
+  const userMessage = rawInput.toLowerCase();
 
   const isRelevant = allowedKeywords.some((keyword) =>
     userMessage.includes(keyword),

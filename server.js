@@ -23,8 +23,17 @@ app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.json());
 
 app.post("/api/ask-gpt", async (req, res) => {
-  const { question } = req.body;
-  console.log("📨 Incoming question:", question);
+  const body = req.body || {};
+  const rawInput =
+    body && typeof body === "object" ? (body.message ?? body.question) : "";
+
+  if (typeof rawInput !== "string" || !rawInput.trim()) {
+    return res.status(400).json({ error: "No message provided" });
+  }
+
+  const userMessage = rawInput.trim();
+
+  console.log("📨 Incoming:", userMessage);
 
   // ⛑️ Guard: fail early if the server isn't configured
   if (!OPENROUTER_API_KEY) {
@@ -45,7 +54,10 @@ app.post("/api/ask-gpt", async (req, res) => {
           "X-Title": "FlowGenixAI Chatbot",
         },
         body: JSON.stringify({
-          model: "openai/gpt-3.5-turbo",
+          // model: "openai/gpt-3.5-turbo",
+          model: "mistralai/mistral-7b-instruct",
+          temperature: 0.7,
+
           messages: [
             {
               role: "system",
@@ -54,7 +66,7 @@ app.post("/api/ask-gpt", async (req, res) => {
             },
             {
               role: "user",
-              content: question,
+              content: userMessage,
             },
           ],
         }),
