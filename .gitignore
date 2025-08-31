@@ -22,3 +22,17 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Replit
+.replit
+replit.nix
+
+# Other build caches (future migrations)
+.next/
+.vercel/
+.build/
+.cache/
+
+# Env variants
+.env.*
+.env.local
