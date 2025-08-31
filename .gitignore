@@ -36,3 +36,6 @@ replit.nix
 # Env variants
 .env.*
 .env.local
+
+# Keep example env in repo
+!.env.example
